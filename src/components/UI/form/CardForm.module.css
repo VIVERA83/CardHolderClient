@@ -1,0 +1,31 @@
+.card-form {
+    padding: 1em;
+    margin: 2em 0;
+    position: relative;
+    justify-content: center;
+    max-width: 600px;
+}
+
+.card-form h1 {
+    padding: 1em 2px;
+    color: #F97300;
+}
+
+.card-form .right {
+    max-width: 600px;
+}
+
+.card-form .right .btn-secondary {
+    background: #F97300;
+    color: #fff;
+    border: 0;
+}
+
+.card-form .right .form-control::placeholder {
+    color: #888;
+    font-size: 16px;
+}
+
+.form-group {
+    padding: 1em;
+}

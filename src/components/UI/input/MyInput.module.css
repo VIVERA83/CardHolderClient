@@ -1,0 +1,8 @@
+.error {
+    color: red;
+    padding: 0 0.1em;
+    margin: 0.1em;
+}
+.error-hidden {
+    display: none;
+}

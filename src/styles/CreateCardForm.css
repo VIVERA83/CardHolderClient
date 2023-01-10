@@ -2,9 +2,9 @@
     padding: 1em;
     margin: 2em 0;
     position: relative;
-    align-items: center;
+    justify-content: center;
 }
-
+/**/
 .contact-form h1 {
     padding: 1em 2px;
     color: #F97300;

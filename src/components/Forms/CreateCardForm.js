@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import NumberField from "../elements/NumberField";
-import "../../css/CreateCardForm.css"
+// import "../../styles/CreateCardForm.css"
 
 class CreateCardForm extends React.Component {
     constructor(props) {

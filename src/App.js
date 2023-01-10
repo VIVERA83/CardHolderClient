@@ -1,31 +1,17 @@
 import React from 'react';
-import Main from "./routes/main"
-import {createBrowserRouter} from "react-router-dom";
-import Root from "./routes/root";
-import ErrorPage from "./error-page";
-import Contact from "./routes/contact";
-import CreateCards from "./routes/createCards";
+import {RouterProvider} from "react-router-dom";
+import router from "./router/router";
 
-import "../src/css/App.css"
-import "../src/css/MyNavBar.css"
+import "./styles/App.css"
+import "./styles/MyNavBar.css"
 
-export const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <Main/>,
-        errorElement: <ErrorPage/>
-    },
-    {
-        path: "contacts/:contactId",
-        element: <Contact/>
-    },
-    {
-        path: "root",
-        element: <Root/>
-    },
-    {
-        path: "create_cards",
-        element: <CreateCards/>
-    },
-])
+function App() {
+    return (
+        <div>
+            <RouterProvider router={router}/>
+        </div>
+    )
+}
+
+export default App
 
