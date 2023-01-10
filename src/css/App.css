@@ -1,0 +1,50 @@
+.bg-dark {
+    background-color: #343a40 !important
+}
+
+.bg-primary {
+    background-color: #343a40 !important
+}
+
+.overlay {
+    position: absolute;
+    min-height: 100%;
+    min-width: 100%;
+    left: 0;
+    top: 0;
+    background: rgba(244, 244, 244, 0.79);
+}
+
+/**/
+
+.description {
+    position: absolute;
+    top: 30%;
+    left: 10%;
+    margin: auto;
+    padding: 2em;
+
+}
+
+.description h1 {
+    color: #F97320;
+}
+
+.description h3 {
+    color: #3AC1EF;
+}
+
+.description p {
+    color: #777;
+    font-size: 20px;
+    width: 50%;
+    line-height: 1.5;
+
+}
+
+.description button {
+    border: 1px solid #F97300;
+    background: #F97300;
+    color: #fff;
+}
+

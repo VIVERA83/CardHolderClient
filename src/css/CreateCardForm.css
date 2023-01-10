@@ -1,0 +1,43 @@
+.contact-form {
+    padding: 1em;
+    margin: 2em 0;
+    position: relative;
+    align-items: center;
+}
+
+.contact-form h1 {
+    padding: 1em 2px;
+    color: #F97300;
+}
+
+.contact-form .right {
+    max-width: 600px;
+}
+
+.contact-form .right .btn-secondary {
+    background: #F97300;
+    color: #fff;
+    border: 0;
+}
+
+.contact-form .right .form-control::placeholder {
+    color: #888;
+    font-size: 16px;
+}
+
+.form-group {
+    padding: 1em;
+}
+
+.btn-submit {
+    margin: 0 1em;
+}
+
+.error {
+    color: red;
+    padding: 0 0.1em;
+    margin: 0.1em;
+}
+.error-hidden {
+    display: none;
+}

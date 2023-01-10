@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Main from "./routes/main"
+import {createBrowserRouter} from "react-router-dom";
+import Root from "./routes/root";
+import ErrorPage from "./error-page";
+import Contact from "./routes/contact";
+import CreateCards from "./routes/createCards";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import "../src/css/App.css"
+import "../src/css/MyNavBar.css"
 
-export default App;
+export const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <Main/>,
+        errorElement: <ErrorPage/>
+    },
+    {
+        path: "contacts/:contactId",
+        element: <Contact/>
+    },
+    {
+        path: "root",
+        element: <Root/>
+    },
+    {
+        path: "create_cards",
+        element: <CreateCards/>
+    },
+])
+
