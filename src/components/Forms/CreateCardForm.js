@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import NumberField from "../elements/NumberField";
-// import "../../styles/CreateCardForm.css"
+
 
 class CreateCardForm extends React.Component {
     constructor(props) {
@@ -43,13 +43,6 @@ class CreateCardForm extends React.Component {
         const {count} = this.state
         const countError = this.validateCount(count)
         return this.setState({countError})
-    }
-    validateSeries = series => {
-        return !(series > 0 && series < 10000) ? "Серия должна быть не менее 1 и не более 10000" : ""
-    }
-
-    validateCount = count => {
-        return !(count > 0 && count < 10) ? "Количество не может быть менее 1 и не более 10" : ""
     }
 
     render() {

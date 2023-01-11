@@ -8,7 +8,7 @@ const CreateCardsPage = () => {
             <MyNavBar/>
             <header className="header">
                 <div className="overlay"></div>
-                {/*<div className="container"></div>*/}
+                <div className="container"></div>
                 <div className="description">
                     <CreateCardForm/>
                 </div>

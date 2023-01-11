@@ -6,18 +6,38 @@
 
 #root {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .App {
     width: 800px;
 }
 
+.post-cart {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+    border: 2px solid #f97300;
+    margin-top: .5em;
+
+}
+
+.post__content {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    margin: 0 1em;
+
+}
+
+
 .bg-dark {
     background-color: #343a40 !important
 }
 
+/**/
 .bg-primary {
     background-color: #343a40 !important
 }
