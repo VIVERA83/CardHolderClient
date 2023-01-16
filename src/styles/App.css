@@ -11,15 +11,16 @@
 }
 
 .App {
-    width: 800px;
 }
 
 .post-cart {
     display: flex;
+    width: 100%;
     justify-content: space-between;
     align-items: center;
     padding: 1em;
     border: 2px solid #f97300;
+    border-radius: 1em;
     margin-top: .5em;
 
 }
@@ -54,20 +55,20 @@
 /**/
 
 .description {
+    min-width: 960px;
     position: absolute;
-    top: 30%;
+    top: 10%;
     left: 10%;
     margin: auto;
     padding: 2em;
-
 }
 
 .description h1 {
     color: #F97320;
 }
 
-.description h3 {
-    color: #3AC1EF;
+.description h4 {
+    color: #3AC11F;
 }
 
 .description p {
@@ -84,3 +85,8 @@
     color: #fff;
 }
 
+.filter {
+    display: flex;
+    float: left;
+    margin: 1em 0;
+}

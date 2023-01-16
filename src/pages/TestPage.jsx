@@ -1,76 +1,42 @@
-// import MyButton from "../components/UI/button/MyButton";
-// import MyInput from "../components/UI/input/MyInput";
-// import CreateCardForm from "../components/Forms/CreateCardForm";
-// import CardItem from "../components/CardItem/CardItem";
-// import MySelect from "../components/UI/select/MySelect";
-// import MyInput from "../components/UI/input/MyInput";
-import React, {useMemo, useState} from "react";
+import React, {useEffect, useState} from "react";
+import MyNavBar from "../components/elements/MyNavBar";
 import CardForm from "../components/UI/form/CardForm";
 import CardList from "../components/CardList/CardList";
-import MyNavBar from "../components/elements/MyNavBar";
 import CardsFilter from "../components/CardsFilter";
-
+import MyModel from "../components/MyModel/MyModel";
+import MyButton from "../components/UI/button/MyButton";
+import {useSortedAndSearchedCards} from "../hooks/useCards";
+import {deleteCard, getCards} from "../api/cardHolder";
+import {searchList, selectedSortList, orientationList} from "../help/filterData";
 
 const TestPage = () => {
-    const [filter, setFilter] = useState(
-        {querySort: "", querySearch: ""}
-    )
-    const selectedSortList = [
-        {
-            name: "Сортировка по серии карты",
-            value: "series"
-        },
-        {
-            name: "Сортировка по номеру карты",
-            value: "number"
-        },
-    ]
-    const [dataCards, setDataCards] = useState([
-        {
-            id: 1,
-            series: 111,
-            number: 2,
-            create_data: "2022-12-21",
-            expire_date: "2022-12-21",
-            status: "not_active"
-        },
-        {
-            id: 5,
-            series: 122253,
-            number: 1,
-            create_data: "2022-12-21",
-            expire_date: "2022-12-21",
-            status: "not_active"
-        },
-        {
-            id: 2,
-            series: 125333,
-            number: 13,
-            create_data: "2022-12-21",
-            expire_date: "2022-12-21",
-            status: "not_active"
-        },
-    ])
 
+    const [filter, setFilter] = useState({querySort: "series", querySearch: "", sortDirection: true, selectedSearch: "series"})
+    const [errorServer, setErrorServer] = useState("")
+    const [dataCards, setDataCards] = useState([])
 
-    // const sortedDataCards = getSortedCards()
-    const sortedDataCards = useMemo(() => {
-        console.log("Отработала функция сортировки", filter.querySearch)
-        if (filter.querySort) {
-            return [...dataCards].sort((a, b) => a[filter.querySort] - b[filter.querySort])
+    useEffect(() => {
+        async function fetchCards() {
+            const [data, err] = await getCards()
+            setDataCards(data)
+            setErrorServer(err)
         }
-        return dataCards
-    }, [filter, dataCards])
 
-    const sortedAndSearchedDataCards = useMemo(() => {
-        return sortedDataCards.filter(card => card.number.toString().includes(filter.querySearch))
-    }, [filter, sortedDataCards])
+        fetchCards()
+    }, [])
 
-    const createCard = (newCard) => {
-        setDataCards([...dataCards, newCard])
+    const [visibleModal, setVisibleModal] = useState(false)
+
+    const sortedAndSearchedDataCards = useSortedAndSearchedCards(dataCards, filter)
+
+    async function createCard(data) {
+        setDataCards([...dataCards, ...data])
+        setVisibleModal(false)
     }
-    const remove = (card) => {
+
+    async function remove(card) {
         console.log("remove", card.id)
+        await deleteCard(card.id)
         setDataCards(dataCards.filter(c => c.id !== card.id))
     }
 
@@ -79,32 +45,37 @@ const TestPage = () => {
             <MyNavBar/>
             <header className="header">
                 <div className="overlay"></div>
-                <div className="container"></div>
             </header>
             <div className="description">
-                <CardForm createCard={createCard}/>
-                <CardsFilter filter={filter}
-                             setFilter={setFilter}
-                             selectedSortList={selectedSortList}
-                />
-                {/*<hr style={{margin: "1em", color: "red", border: ".1em solid red"}}></hr>*/}
-                {/*<MyInput style={{margin: "1em 0"}}*/}
-                {/*         value={searchQuery}*/}
-                {/*         onChange={event => setSearchQuery(event.target.value)}*/}
-                {/*         placeholder="поиск номеру"/>*/}
-
-
-                {/*<MySelect value={selectedSort}*/}
-                {/*          defaultValue="Сортировка"*/}
-                {/*          onChange={sortCards}*/}
-                {/*          options={sortList}/>*/}
-
-                <CardList title={"Список карт"}
-                          dataCards={sortedAndSearchedDataCards}
-                          remove={remove}/>
-
+                <MyModel visible={visibleModal}
+                         setVisible={setVisibleModal}>
+                    <CardForm createCard={createCard}/>
+                </MyModel>
+                <div className="row">
+                    <div className="col">
+                        <MyButton onClick={() => setVisibleModal(true)}>
+                            Сгенерировать карты
+                        </MyButton>
+                        <hr style={{margin: "1em", color: "red", border: ".1em solid red"}}></hr>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col">
+                        <CardsFilter filter={filter}
+                                     setFilter={setFilter}
+                                     selectedSortList={selectedSortList}
+                                     orientationList={orientationList}
+                                     searchList={searchList}/>
+                    </div>
+                    <div className="row">
+                        <CardList
+                            title={"Список карт"}
+                            dataCards={sortedAndSearchedDataCards}
+                            error={errorServer}
+                            remove={remove}/>
+                    </div>
+                </div>
             </div>
-            {/*</header>*/}
         </div>
     )
 }

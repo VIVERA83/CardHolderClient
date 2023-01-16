@@ -1,20 +1,25 @@
 import React from 'react';
 import CardItem from "../CardItem/CardItem";
 
-const CardList = ({title, dataCards, remove,}) => {
-    const title_ = dataCards.length>0
+const CardList = ({title, dataCards, remove, error}) => {
+    const title_ = dataCards.length > 0
         ? title
-        : "Карты не найдены"
+        : error
+            ? "Сервер временно не доступен"
+            : "Карты не найдены"
     return (
         <div>
             <h1 style={{textAlign: "center"}}>{title_}</h1>
-            {dataCards.map((card, index) =>
-                <CardItem index={index+1}
-                          card={card}
-                          key={card.id}
-                          remove={remove}
-                />
-            )}
+            <div className="row justify-content-center">
+                {dataCards.map((card, index) =>
+                    <div className={"col-5"} key={card.id}>
+                        <CardItem index={index + 1}
+                                  card={card}
+                                  remove={remove}
+                        />
+                    </div>
+                )}
+            </div>
         </div>
     );
 };

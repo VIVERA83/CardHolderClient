@@ -1,16 +1,27 @@
 import React from 'react';
 import MyButton from "../UI/button/MyButton";
+import moment from "moment";
 
-const CardItem = ({index, card, remove, ...props}) => {
+function numberToStr(number) {
+    return moment(number).local().format("LLL")
+}
+
+const CardItem = ({index, card, remove,}) => {
     return (
         <div className="post-cart">
             <div className="post__content">
-                <strong>{index}. {card.series} {card.number}</strong>
+                <strong>{index}.</strong>
                 <div>
-                    дата активации {card.create_data}
+                    <strong>Серия {card.series}</strong>
                 </div>
                 <div>
-                    срок действия {card.expire_date}
+                    <strong>Номер {card.number}</strong>
+                </div>
+                <div>
+                    дата активации {numberToStr(card.create_data)}
+                </div>
+                <div>
+                    срок действия {numberToStr(card.expire_date)}
                 </div>
                 <div>статус {card.status}
                 </div>
@@ -18,8 +29,8 @@ const CardItem = ({index, card, remove, ...props}) => {
             <div>
                 <MyButton onClick={() => remove(card)}>Удалить</MyButton>
             </div>
-
         </div>
+
     )
         ;
 };

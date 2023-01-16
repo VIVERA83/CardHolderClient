@@ -14,12 +14,6 @@
     max-width: 600px;
 }
 
-/*.contact-form .right .btn-secondary {*/
-/*    background: #F97300;*/
-/*    color: #fff;*/
-/*    border: 0;*/
-/*}*/
-
 .contact-form .right .form-control::placeholder {
     color: #888;
     font-size: 16px;
