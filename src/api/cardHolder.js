@@ -1,10 +1,11 @@
 import axios from "axios";
+const URL = "http://0.0.0.0:8000"
 
-const URL = "http://127.0.0.1:8000"
-
-export async function getCards() {
+export async function getAll() {
     try {
-        const response = await axios.post(URL + "/search/", {"page[size]": 100})
+        const response = await axios.get(
+            URL + "/get_all/",
+            {params: {"page[size]": 100}})
         return [response.data, ""]
     } catch (error) {
         return [[], "Сервер временно не доступен"]

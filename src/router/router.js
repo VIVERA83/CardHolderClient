@@ -9,13 +9,18 @@ import TestPage from "../pages/TestPage";
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <TestPage/>
+        element: <MainPage/>
         // element: <MainPage/>,
         //     errorElement: <ErrorPage/>
     },
     {
         path: "create_cards",
         element: <CreateCardsPage/>
+
+    },
+    {
+        path: "test_page",
+        element: <TestPage/>
 
     },
     {

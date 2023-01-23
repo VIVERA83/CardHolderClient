@@ -17,10 +17,10 @@ class MyNavBar extends React.Component {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav mr-4">
                             <li className="nav-item">
-                                <NavLink to={"/create_cards"} className="nav-link ">Генерация карт</NavLink>
+                                <NavLink to={"/create_cards"} className="nav-link ">Работа с картами</NavLink>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">Поиск</a>
+                                <NavLink to="/test_page" className="nav-link" >Тестовая страница</NavLink>
                             </li>
                         </ul>
                     </div>

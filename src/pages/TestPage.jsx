@@ -6,8 +6,8 @@ import CardsFilter from "../components/CardsFilter";
 import MyModel from "../components/MyModel/MyModel";
 import MyButton from "../components/UI/button/MyButton";
 import {useSortedAndSearchedCards} from "../hooks/useCards";
-import {deleteCard, getCards} from "../api/cardHolder";
-import {searchList, selectedSortList, orientationList} from "../help/filterData";
+import {deleteCard, getAll} from "../api/cardHolder";
+import {searchList, selectedSortList, orientationList} from "../data/filterData";
 
 const TestPage = () => {
 
@@ -17,7 +17,7 @@ const TestPage = () => {
 
     useEffect(() => {
         async function fetchCards() {
-            const [data, err] = await getCards()
+            const [data, err] = await getAll()
             setDataCards(data)
             setErrorServer(err)
         }
@@ -35,7 +35,6 @@ const TestPage = () => {
     }
 
     async function remove(card) {
-        console.log("remove", card.id)
         await deleteCard(card.id)
         setDataCards(dataCards.filter(c => c.id !== card.id))
     }
